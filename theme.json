@@ -1,0 +1,25 @@
+{
+  "id": "Nebula-Fork",
+  "homepage": "https://github.com/Impre-dev/Nebula-Fork",
+  "author": "Impre",
+  "name": "Nebula Fork",
+  "description": "Transparency-only fork of Nebula — glass, blur, and nothing else.",
+  "version": "1.0.0",
+  "createdAt": "2026-07-28",
+  "updatedAt": "2026-07-28",
+  "readme": "https://raw.githubusercontent.com/Impre-dev/Nebula-Fork/main/README.md",
+  "image": "https://i.ibb.co/Lqk4krw/Screenshot-2025-09-03-232353.png",
+  "style": {
+    "chrome": "userChrome.css",
+    "content": "userContent.css"
+  },
+  "scripts": {
+    "js/nebula-fork.uc.js": {
+      "name": "Core script",
+      "description": "Transparency engine — pseudo-backgrounds and gradient slider.",
+      "include": ["chrome://browser/content/browser.xhtml"]
+    }
+  },
+  "tags": ["chrome", "content", "minimal"],
+  "fork": ["zen"]
+}

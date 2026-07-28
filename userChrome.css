@@ -1,0 +1,407 @@
+/* ============================================
+   Nebula-Fork — Transparency Only
+   Forked from Nebula by JustADumbPrsn
+   Keeps: glass, blur, transparent backgrounds
+   ============================================ */
+
+/* =============================================
+   §1  CONFIG VARIABLES
+   ============================================= */
+
+:root {
+  /* ✨ Glass & Blur */
+  --nebula-glass: blur(32px) saturate(140%) !important;
+  --nebula-color-glass: light-dark(
+    rgb(255 255 255 / 40%),
+    rgb(0 0 0 / 40%)
+  ) !important;
+
+  /* 🖼️ Layout */
+  --nebula-border-radius: 13px !important;
+
+  /* 🎨 UI & Website Tint */
+  --nebula-ui-tint: light-dark(
+    rgb(255 255 255 / 20%),
+    rgb(0 0 0 / 20%)
+  ) !important;
+  --nebula-website-tint: light-dark(
+    rgb(255 255 255 / 0%),
+    rgb(0 0 0 / 0%)
+  ) !important;
+
+  /* 🔮 Colors (semi-transparent) */
+  --nebula-color-min: light-dark(
+    rgb(255 255 255 / 10%),
+    rgb(0 0 0 / 20%)
+  ) !important;
+  --nebula-color: light-dark(
+    rgb(255 255 255 / 25%),
+    rgb(0 0 0 / 35%)
+  ) !important;
+  --nebula-color-hover: light-dark(
+    rgb(255 255 255 / 35%),
+    rgb(0 0 0 / 45%)
+  ) !important;
+  --nebula-color-selected: light-dark(
+    rgb(255 255 255 / 45%),
+    rgb(0 0 0 / 55%)
+  ) !important;
+  --nebula-color-shadow: light-dark(
+    rgb(255 255 255 / 5.5%),
+    rgb(0 0 0 / 55%)
+  ) !important;
+}
+
+/* =============================================
+   §2  CORE TRANSPARENCY
+   ============================================= */
+
+/* Main UI tint */
+#zen-main-app-wrapper {
+  background: var(--nebula-ui-tint) !important;
+}
+
+/* Website background tint */
+browser[transparent="true"] {
+  background: var(--nebula-website-tint) !important;
+}
+
+/* Global overrides for transparency */
+:root {
+  --attention-dot-color: transparent !important;
+  --zen-themed-toolbar-bg-transparent: transparent !important;
+}
+
+:root[nebula-zen-gradient-contrast-zero] {
+  --zen-main-browser-background: transparent !important;
+}
+
+/* Required for blur rendering */
+browser {
+  transform: translateZ(0);
+}
+
+/* =============================================
+   §3  SIDEBAR / TITLEBAR TRANSPARENCY
+   ============================================= */
+
+/* --- Titlebar pseudo-elements (transparent base) --- */
+
+#navigator-toolbox:not([animate="true"]) {
+  #titlebar {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      outline: 0 !important;
+      z-index: -1;
+      border-radius: 11px !important;
+      background: transparent !important;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      background: transparent !important;
+      opacity: var(--zen-grainy-background-opacity, 0);
+      mix-blend-mode: overlay;
+    }
+  }
+}
+
+/* --- JS-created pseudo-background behind titlebar --- */
+
+#Nebula-titlebar-background {
+  position: absolute;
+  z-index: -100000;
+  pointer-events: none;
+  border-radius: 11px;
+  opacity: 0;
+  background-color: light-dark(rgb(200 200 200 / 100%), rgb(30 30 30 / 100%));
+}
+
+#Nebula-titlebar-background.visible {
+  opacity: 1;
+}
+
+/* --- Titlebar theming --- */
+
+.zen-toolbar-background::before,
+.zen-toolbar-background::after {
+  outline: none !important;
+  background-color: light-dark(
+    rgb(255 255 255 / 40%),
+    rgb(0 0 0 / 40%)
+  ) !important;
+}
+
+/* Titlebar glass effect */
+html[nebula-compact-mode] #titlebar > .zen-browser-generic-background {
+  padding: 8px;
+  border-radius: 13px !important;
+  background-color: transparent !important;
+  backdrop-filter: var(--nebula-glass) !important;
+}
+
+:root[zen-right-side="true"][nebula-compact-mode] #titlebar {
+  left: auto !important;
+  right: var(--zen-element-separation) !important;
+}
+
+/* --- Compact mode visibility handling --- */
+
+@media (-moz-pref("zen.view.compact.hide-toolbar")) {
+  @media not all and (-moz-pref("zen.view.compact.hide-tabbar")) {
+    #Nebula-titlebar-background {
+      opacity: 0 !important;
+    }
+  }
+}
+
+/* --- Single toolbar mode --- */
+
+html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
+  top: var(--zen-element-separation) !important;
+  left: var(--zen-element-separation) !important;
+  height: calc(100% - (var(--zen-element-separation) * 2)) !important;
+}
+
+/* --- Multi & collapsed toolbar --- */
+
+@media (-moz-pref("zen.view.compact.hide-tabbar")) {
+  html[nebula-multi-toolbar][nebula-compact-mode] #titlebar,
+  html[nebula-collapsed-toolbar][nebula-compact-mode] #titlebar {
+    top: var(--zen-element-separation) !important;
+    left: var(--zen-element-separation) !important;
+    height: calc(100% - (var(--zen-element-separation) * 2)) !important;
+  }
+
+  html[nebula-multi-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
+    #titlebar {
+    left: auto !important;
+    right: var(--zen-element-separation) !important;
+  }
+
+  html[nebula-collapsed-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
+    #titlebar {
+    left: auto !important;
+    right: calc(var(--zen-element-separation) * 1.75) !important;
+  }
+}
+
+@media (-moz-pref("zen.view.compact.hide-toolbar")) {
+  @media not all and (-moz-pref("zen.view.compact.hide-tabbar")) {
+    html[nebula-multi-toolbar][nebula-compact-mode] #titlebar,
+    html[nebula-collapsed-toolbar][nebula-compact-mode] #titlebar {
+      background: none !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      backdrop-filter: none !important;
+    }
+
+    html[nebula-multi-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
+      #titlebar,
+    html[nebula-collapsed-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
+      #titlebar {
+      left: auto !important;
+      right: unset !important;
+    }
+  }
+}
+
+@media (-moz-pref("zen.view.compact.hide-tabbar")) and (-moz-pref("zen.view.compact.hide-toolbar")) {
+  html[nebula-multi-toolbar][nebula-compact-mode] #titlebar,
+  html[nebula-collapsed-toolbar][nebula-compact-mode] #titlebar {
+    top: var(--zen-element-separation) !important;
+    left: var(--zen-element-separation) !important;
+    height: calc(100% - (var(--zen-element-separation) * 3)) !important;
+  }
+
+  html[nebula-multi-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
+    #titlebar {
+    left: auto !important;
+    right: var(--zen-element-separation) !important;
+  }
+
+  html[nebula-collapsed-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
+    #titlebar {
+    left: auto !important;
+    right: calc(var(--zen-element-separation) * 1.75) !important;
+  }
+}
+
+/* =============================================
+   §4  SIDEBAR ITEMS TRANSPARENCY
+   ============================================= */
+
+/* Transparent Sidebar Items */
+.sidebar-panel {
+  background: transparent !important;
+}
+
+/* Clean & Transparent Sidebar Box */
+#sidebar-box {
+  background-color: light-dark(
+    rgb(255 255 255 / 11%),
+    rgb(0 0 0 / 20%)
+  ) !important;
+  border: none !important;
+}
+
+#sidebar-box #sidebar-header {
+  border-bottom: none !important;
+}
+
+#sidebar-search-container {
+  background-color: rgb(0 0 0 / 0%) !important;
+}
+
+#sidebar-header {
+  background-color: rgb(0 0 0 / 0%) !important;
+}
+
+/* Transparent Sidebar Search Box & View Button */
+#sidebar-search-container > #search-box,
+#viewButton {
+  padding: 4px 8px !important;
+  appearance: none !important;
+  background-color: transparent !important;
+  border-radius: 10px !important;
+  border: none !important;
+}
+
+#sidebar-search-container > #search-box:hover,
+#viewButton:hover,
+#sidebar-search-container > #search-box:active,
+#viewButton:active {
+  background-color: rgb(255 255 255 / 10%) !important;
+}
+
+/* =============================================
+   §5  URLBAR TRANSPARENCY
+   ============================================= */
+
+/* JS-created pseudo-background behind urlbar */
+#Nebula-urlbar-background {
+  position: absolute;
+  z-index: -10;
+  pointer-events: none;
+  border-radius: 15px;
+  opacity: 0;
+  background-color: light-dark(rgb(200 200 200 / 100%), rgb(30 30 30 / 100%));
+  display: none;
+}
+
+#Nebula-urlbar-background.visible {
+  opacity: 1;
+}
+
+/* URL bar background — semi-transparent default state */
+.urlbar-background {
+  background: var(--nebula-color) !important;
+  box-shadow: 0 0 3px transparent !important;
+  border-radius: var(--nebula-border-radius) !important;
+  backdrop-filter: none;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease !important;
+}
+
+#urlbar:hover:not([open]) .urlbar-background {
+  background-color: var(--nebula-color-hover) !important;
+  box-shadow: 0 0 3px var(--nebula-color-shadow) !important;
+}
+
+/* When URL bar is open — glass effect */
+#urlbar[open] .urlbar-background {
+  border-radius: 15px !important;
+  background: light-dark(rgb(255 255 255 / 85%), rgb(0 0 0 / 40%)) !important;
+  outline: none !important;
+  scale: 1.01 !important;
+}
+
+#urlbar[open] {
+  box-shadow: 0 20px 40px var(--nebula-color-shadow);
+  border-radius: 15px !important;
+  overflow: hidden !important;
+  backdrop-filter: var(--nebula-glass) !important;
+}
+
+/* =============================================
+   §6  TAB BACKGROUNDS (semi-transparent)
+   ============================================= */
+
+.tabbrowser-tab {
+  .tab-background {
+    border-radius: var(--nebula-border-radius) !important;
+    position: relative !important;
+    box-shadow: 0 0 3px transparent !important;
+    transition:
+      background-color 0.3s ease,
+      box-shadow 0.3s ease !important;
+  }
+
+  /* Pinned tabs */
+  &[pinned] .tab-background {
+    background-color: var(--nebula-color-min) !important;
+  }
+
+  /* Hover state */
+  &:is([pinned], :not([pinned])):hover .tab-background {
+    background-color: var(--nebula-color-hover) !important;
+    box-shadow: 0 0 3px var(--nebula-color-shadow) !important;
+  }
+
+  /* Selected state */
+  &:is([pinned], :not([pinned])):is(
+      [selected="true"],
+      [visuallyselected="true"]
+    )
+    .tab-background {
+    background-color: var(--nebula-color-selected) !important;
+    box-shadow: 0 0 3px var(--nebula-color-shadow) !important;
+  }
+}
+
+/* =============================================
+   §7  FLOATING STATUSBAR (glass)
+   ============================================= */
+
+#statuspanel {
+  margin: 12px !important;
+  pointer-events: none !important;
+}
+
+#statuspanel-label {
+  border-radius: 9px !important;
+  padding: 4px 12px !important;
+  font-size: 12.5px !important;
+  border: 1px solid var(--nebula-color) !important;
+  background: var(--nebula-color-glass) !important;
+  backdrop-filter: blur(8px) saturate(140%) !important;
+  box-shadow: 0 4px 14px var(--nebula-color-shadow) !important;
+}
+
+/* =============================================
+   §8  CTRL+TAB PANEL (glass)
+   ============================================= */
+
+#nebula-ctrltab-background-below {
+  background-color: light-dark(rgb(200 200 200 / 100%), rgb(20 20 20 / 100%));
+  border-radius: var(--nebula-border-radius);
+}
+
+#nebula-ctrltab-background-above {
+  backdrop-filter: var(--nebula-glass);
+  border-radius: var(--nebula-border-radius);
+}
+
+#ctrlTab-panel {
+  --panel-background: var(--nebula-color-glass) !important;
+  border-radius: calc(var(--nebula-border-radius) + 4px) !important;
+  box-shadow: 0 4px 20px var(--nebula-color-shadow) !important;
+}

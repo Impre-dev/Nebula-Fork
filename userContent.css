@@ -1,0 +1,69 @@
+/* ============================================
+   Nebula-Fork — Content Transparency
+   Makes about:* pages transparent
+   ============================================= */
+
+:root {
+  --zen-colors-tertiary: transparent !important;
+  --zen-settings-secondary-background: transparent !important;
+}
+
+groupbox:not(#sineInstallationGroup:popover-open) {
+  background: light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 35%)) !important;
+  border: none;
+}
+
+#preferences-root {
+  background-color: transparent !important;
+}
+
+/* ---------------- Transparent backgrounds for all about: pages ---------------- */
+
+@-moz-document url-prefix("about:") {
+  html,
+  body,
+  #toolbar,
+  .App,
+  .sticky-container,
+  .main-search,
+  .main-heading {
+    background-color: transparent !important;
+  }
+
+  table,
+  tr,
+  .action-box {
+    background-color: light-dark(
+      rgb(255 255 255 / 25%),
+      rgb(0 0 0 / 35%)
+    ) !important;
+    border-radius: 13px !important;
+    border: none !important;
+  }
+
+  tr {
+    outline: solid 1px #8882 !important;
+  }
+
+  .top-sites-list,
+  .personalizeButtonWrapper {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .top-sites-list:hover,
+  .personalizeButtonWrapper:hover {
+    opacity: 1 !important;
+  }
+
+  .App > div:nth-child(2),
+  .wallpaper {
+    display: none !important;
+  }
+}
+
+/* Fixes the transparent dialogs */
+.dialogFrame {
+  background: var(--zen-dialog-background);
+  border-radius: 8px;
+}
