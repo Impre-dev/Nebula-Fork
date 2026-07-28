@@ -16,9 +16,6 @@
     rgb(0 0 0 / 40%)
   ) !important;
 
-  /* 🖼️ Layout */
-  --nebula-border-radius: 13px !important;
-
   /* 🎨 UI & Website Tint */
   --nebula-ui-tint: light-dark(
     rgb(255 255 255 / 20%),
@@ -97,7 +94,6 @@ browser {
       pointer-events: none;
       outline: 0 !important;
       z-index: -1;
-      border-radius: 11px !important;
       background: transparent !important;
     }
 
@@ -119,7 +115,6 @@ browser {
   position: absolute;
   z-index: -100000;
   pointer-events: none;
-  border-radius: 11px;
   opacity: 0;
   background-color: light-dark(rgb(200 200 200 / 100%), rgb(30 30 30 / 100%));
 }
@@ -142,7 +137,6 @@ browser {
 /* Titlebar glass effect */
 html[nebula-compact-mode] #titlebar > .zen-browser-generic-background {
   padding: 8px;
-  border-radius: 13px !important;
   background-color: transparent !important;
   backdrop-filter: var(--nebula-glass) !important;
 }
@@ -199,7 +193,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
     html[nebula-collapsed-toolbar][nebula-compact-mode] #titlebar {
       background: none !important;
       padding: 0 !important;
-      border-radius: 0 !important;
       backdrop-filter: none !important;
     }
 
@@ -270,7 +263,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
   padding: 4px 8px !important;
   appearance: none !important;
   background-color: transparent !important;
-  border-radius: 10px !important;
   border: none !important;
 }
 
@@ -290,7 +282,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
   position: absolute;
   z-index: -10;
   pointer-events: none;
-  border-radius: 15px;
   opacity: 0;
   background-color: light-dark(rgb(200 200 200 / 100%), rgb(30 30 30 / 100%));
   display: none;
@@ -304,7 +295,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 .urlbar-background {
   background: var(--nebula-color) !important;
   box-shadow: 0 0 3px transparent !important;
-  border-radius: var(--nebula-border-radius) !important;
   backdrop-filter: none;
   transition:
     background-color 0.3s ease,
@@ -318,7 +308,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 
 /* When URL bar is open — glass effect */
 #urlbar[open] .urlbar-background {
-  border-radius: 15px !important;
   background: light-dark(rgb(255 255 255 / 85%), rgb(0 0 0 / 40%)) !important;
   outline: none !important;
   scale: 1.01 !important;
@@ -326,7 +315,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 
 #urlbar[open] {
   box-shadow: 0 20px 40px var(--nebula-color-shadow);
-  border-radius: 15px !important;
   overflow: hidden !important;
   backdrop-filter: var(--nebula-glass) !important;
 }
@@ -337,7 +325,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 
 .tabbrowser-tab {
   .tab-background {
-    border-radius: var(--nebula-border-radius) !important;
     position: relative !important;
     box-shadow: 0 0 3px transparent !important;
     transition:
@@ -377,7 +364,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 }
 
 #statuspanel-label {
-  border-radius: 9px !important;
   padding: 4px 12px !important;
   font-size: 12.5px !important;
   border: 1px solid var(--nebula-color) !important;
@@ -392,16 +378,13 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 
 #nebula-ctrltab-background-below {
   background-color: light-dark(rgb(200 200 200 / 100%), rgb(20 20 20 / 100%));
-  border-radius: var(--nebula-border-radius);
 }
 
 #nebula-ctrltab-background-above {
   backdrop-filter: var(--nebula-glass);
-  border-radius: var(--nebula-border-radius);
 }
 
 #ctrlTab-panel {
   --panel-background: var(--nebula-color-glass) !important;
-  border-radius: calc(var(--nebula-border-radius) + 4px) !important;
   box-shadow: 0 4px 20px var(--nebula-color-shadow) !important;
 }
