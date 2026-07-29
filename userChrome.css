@@ -366,8 +366,9 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 
   /* Hover state */
   &:is([pinned], :not([pinned])):hover .tab-background {
-    background-color: var(--nebula-color-hover) !important;
-    box-shadow: 0 0 3px var(--nebula-color-shadow) !important;
+    /* background-color: var(--nebula-color-hover) !important; */
+    background-color: var(--nebula-color-min) !important;
+    /* box-shadow: 0 0 3px var(--nebula-color-shadow) !important; */
   }
 
   /* Selected state */
@@ -376,8 +377,9 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
       [visuallyselected="true"]
     )
     .tab-background {
-    background-color: var(--nebula-color-selected) !important;
-    box-shadow: 0 0 3px var(--nebula-color-shadow) !important;
+    /* background-color: var(--nebula-color-selected) !important; */
+    background-color: var(--nebula-color-min) !important;
+    /* box-shadow: 0 0 3px var(--nebula-color-shadow) !important; */
   }
 }
 
