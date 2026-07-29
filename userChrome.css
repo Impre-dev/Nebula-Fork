@@ -250,7 +250,7 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
   background-color: rgba(0, 0, 0, 0.4) !important;
   backdrop-filter: blur(32px) saturate(1.4) !important;
   box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 40px 0px !important;
-  border-radius: 12px !important;
+  border-radius: 6px !important;
   overflow: hidden !important;
 }
 
