@@ -120,7 +120,7 @@ browser {
 }
 
 #Nebula-titlebar-background.visible {
-  opacity: 0.98;
+  opacity: 0;
 }
 
 /* --- Titlebar theming (transparent base) --- */
@@ -315,7 +315,7 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 }
 
 #Nebula-urlbar-background.visible {
-  opacity: 0.98;
+  opacity: 0;
 }
 
 /* URL bar background — semi-transparent default state */
