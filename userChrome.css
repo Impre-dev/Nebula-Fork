@@ -120,25 +120,22 @@ browser {
 }
 
 #Nebula-titlebar-background.visible {
-  opacity: 1;
+  opacity: 0.98;
 }
 
-/* --- Titlebar theming --- */
+/* --- Titlebar theming (transparent base) --- */
 
+/* Kill ALL dark backgrounds on the toolbar background element */
 .zen-toolbar-background::before,
 .zen-toolbar-background::after {
   outline: none !important;
-  background-color: light-dark(
-    rgb(255 255 255 / 40%),
-    rgb(0 0 0 / 40%)
-  ) !important;
+  background-color: transparent !important;
 }
 
-/* Titlebar glass effect */
-html[nebula-compact-mode] #titlebar > .zen-browser-generic-background {
-  padding: 8px;
+#zen-toolbar-background,
+.zen-toolbar-background {
   background-color: transparent !important;
-  backdrop-filter: var(--nebula-glass) !important;
+  background: transparent !important;
 }
 
 :root[zen-right-side="true"][nebula-compact-mode] #titlebar {
@@ -228,6 +225,36 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 }
 
 /* =============================================
+   §3b SIDEBAR GLASS EFFECT (compact hover)
+   ============================================= */
+
+/* Base transitions — toujours actives pour animation fluide entrée ET sortie.
+   Même pattern que Custom-v2.css (.browserStack base rule). */
+.browserStack {
+  transition: all 0.3s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
+}
+
+#titlebar {
+  transition: all 0.3s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
+}
+
+/* Blur du contenu web quand la sidebar est hover.
+   brightness + blur + scale, comme l'urlbar de Custom-v2.css. */
+#browser:has(#navigator-toolbox[zen-has-hover="true"]) .browserStack {
+  scale: 1.075 !important;
+  filter: brightness(85%) blur(16px) saturate(140%) !important;
+}
+
+/* Glass panel sur le titlebar quand la sidebar est hover. */
+#browser:has(#navigator-toolbox[zen-has-hover="true"]) #titlebar {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(32px) saturate(1.4) !important;
+  box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 40px 0px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+/* =============================================
    §4  SIDEBAR ITEMS TRANSPARENCY
    ============================================= */
 
@@ -288,7 +315,7 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 }
 
 #Nebula-urlbar-background.visible {
-  opacity: 1;
+  opacity: 0.98;
 }
 
 /* URL bar background — semi-transparent default state */
