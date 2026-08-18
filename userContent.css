@@ -67,3 +67,4 @@ groupbox:not(#sineInstallationGroup:popover-open) {
   background: var(--zen-dialog-background);
   border-radius: 8px;
 }
+

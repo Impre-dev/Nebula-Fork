@@ -228,30 +228,32 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
    §3b SIDEBAR GLASS EFFECT (compact hover)
    ============================================= */
 
-/* Base transitions — toujours actives pour animation fluide entrée ET sortie.
-   Même pattern que Custom-v2.css (.browserStack base rule). */
-.browserStack {
-  transition: all 0.3s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
-}
+html[nebula-compact-mode] {
+  /* Base transitions — toujours actives pour animation fluide entrée ET sortie.
+    Même pattern que Custom-v2.css (.browserStack base rule). */
+  .browserStack {
+    transition: all 0.3s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
+  }
 
-#titlebar {
-  transition: all 0.3s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
-}
+  #titlebar {
+    transition: all 0.3s cubic-bezier(0.175, 0.385, 0.12, 1) !important;
+  }
 
-/* Blur du contenu web quand la sidebar est hover.
-   brightness + blur + scale, comme l'urlbar de Custom-v2.css. */
-#browser:has(#navigator-toolbox[zen-has-hover="true"]) .browserStack {
-  scale: 1.075 !important;
-  filter: brightness(85%) blur(16px) saturate(140%) !important;
-}
+  /* Blur du contenu web quand la sidebar est hover.
+    brightness + blur + scale, comme l'urlbar de Custom-v2.css. */
+  #browser:has(#navigator-toolbox[zen-has-hover="true"]) .browserStack {
+    scale: 1.075 !important;
+    filter: brightness(85%) blur(16px) saturate(140%) !important;
+  }
 
-/* Glass panel sur le titlebar quand la sidebar est hover. */
-#browser:has(#navigator-toolbox[zen-has-hover="true"]) #titlebar {
-  background-color: rgba(0, 0, 0, 0.4) !important;
-  backdrop-filter: blur(32px) saturate(1.4) !important;
-  box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 40px 0px !important;
-  border-radius: 6px !important;
-  overflow: hidden !important;
+  /* Glass panel sur le titlebar quand la sidebar est hover. */
+  #browser:has(#navigator-toolbox[zen-has-hover="true"]) #titlebar {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(32px) saturate(1.4) !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 40px 0px !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+  }
 }
 
 /* =============================================
@@ -298,52 +300,6 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 #sidebar-search-container > #search-box:active,
 #viewButton:active {
   background-color: rgb(255 255 255 / 10%) !important;
-}
-
-/* =============================================
-   §5  URLBAR TRANSPARENCY
-   ============================================= */
-
-/* JS-created pseudo-background behind urlbar */
-#Nebula-urlbar-background {
-  position: absolute;
-  z-index: -10;
-  pointer-events: none;
-  opacity: 0;
-  background-color: light-dark(rgb(200 200 200 / 100%), rgb(30 30 30 / 100%));
-  display: none;
-}
-
-#Nebula-urlbar-background.visible {
-  opacity: 0;
-}
-
-/* URL bar background — semi-transparent default state */
-.urlbar-background {
-  background: var(--nebula-color) !important;
-  box-shadow: 0 0 3px transparent !important;
-  backdrop-filter: none;
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease !important;
-}
-
-#urlbar:hover:not([open]) .urlbar-background {
-  background-color: var(--nebula-color-hover) !important;
-  box-shadow: 0 0 3px var(--nebula-color-shadow) !important;
-}
-
-/* When URL bar is open — glass effect */
-#urlbar[open] .urlbar-background {
-  background: light-dark(rgb(255 255 255 / 85%), rgb(0 0 0 / 40%)) !important;
-  outline: none !important;
-  scale: 1.01 !important;
-}
-
-#urlbar[open] {
-  box-shadow: 0 20px 40px var(--nebula-color-shadow);
-  overflow: hidden !important;
-  backdrop-filter: var(--nebula-glass) !important;
 }
 
 /* =============================================
