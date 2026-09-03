@@ -11,42 +11,18 @@
 :root {
   /* ✨ Glass & Blur */
   --nebula-glass: blur(32px) saturate(140%) !important;
-  --nebula-color-glass: light-dark(
-    rgb(255 255 255 / 40%),
-    rgb(0 0 0 / 40%)
-  ) !important;
+  --nebula-color-glass: light-dark(rgb(255 255 255 / 40%), rgb(0 0 0 / 40%)) !important;
 
   /* 🎨 UI & Website Tint */
-  --nebula-ui-tint: light-dark(
-    rgb(255 255 255 / 20%),
-    rgb(0 0 0 / 20%)
-  ) !important;
-  --nebula-website-tint: light-dark(
-    rgb(255 255 255 / 0%),
-    rgb(0 0 0 / 0%)
-  ) !important;
+  --nebula-ui-tint: light-dark(rgb(255 255 255 / 20%), rgb(0 0 0 / 20%)) !important;
+  --nebula-website-tint: light-dark(rgb(255 255 255 / 0%), rgb(0 0 0 / 0%)) !important;
 
   /* 🔮 Colors (semi-transparent) */
-  --nebula-color-min: light-dark(
-    rgb(255 255 255 / 10%),
-    rgb(0 0 0 / 20%)
-  ) !important;
-  --nebula-color: light-dark(
-    rgb(255 255 255 / 25%),
-    rgb(0 0 0 / 35%)
-  ) !important;
-  --nebula-color-hover: light-dark(
-    rgb(255 255 255 / 35%),
-    rgb(0 0 0 / 45%)
-  ) !important;
-  --nebula-color-selected: light-dark(
-    rgb(255 255 255 / 45%),
-    rgb(0 0 0 / 55%)
-  ) !important;
-  --nebula-color-shadow: light-dark(
-    rgb(255 255 255 / 5.5%),
-    rgb(0 0 0 / 55%)
-  ) !important;
+  --nebula-color-min: light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 20%)) !important;
+  --nebula-color: light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 35%)) !important;
+  --nebula-color-hover: light-dark(rgb(255 255 255 / 35%), rgb(0 0 0 / 45%)) !important;
+  --nebula-color-selected: light-dark(rgb(255 255 255 / 45%), rgb(0 0 0 / 55%)) !important;
+  --nebula-color-shadow: light-dark(rgb(255 255 255 / 5.5%), rgb(0 0 0 / 55%)) !important;
 }
 
 /* =============================================
@@ -59,7 +35,7 @@
 }
 
 /* Website background tint */
-browser[transparent="true"] {
+browser[transparent='true'] {
   background: var(--nebula-website-tint) !important;
 }
 
@@ -84,12 +60,12 @@ browser {
 
 /* --- Titlebar pseudo-elements (transparent base) --- */
 
-#navigator-toolbox:not([animate="true"]) {
+#navigator-toolbox:not([animate='true']) {
   #titlebar {
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       pointer-events: none;
       outline: 0 !important;
@@ -98,7 +74,7 @@ browser {
     }
 
     &::after {
-      content: "";
+      content: '';
       position: absolute;
       pointer-events: none;
       z-index: 0;
@@ -138,15 +114,15 @@ browser {
   background: transparent !important;
 }
 
-:root[zen-right-side="true"][nebula-compact-mode] #titlebar {
+:root[zen-right-side='true'][nebula-compact-mode] #titlebar {
   left: auto !important;
   right: var(--zen-element-separation) !important;
 }
 
 /* --- Compact mode visibility handling --- */
 
-@media (-moz-pref("zen.view.compact.hide-toolbar")) {
-  @media not all and (-moz-pref("zen.view.compact.hide-tabbar")) {
+@media (-moz-pref('zen.view.compact.hide-toolbar')) {
+  @media not all and (-moz-pref('zen.view.compact.hide-tabbar')) {
     #Nebula-titlebar-background {
       opacity: 0 !important;
     }
@@ -163,7 +139,7 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
 
 /* --- Multi & collapsed toolbar --- */
 
-@media (-moz-pref("zen.view.compact.hide-tabbar")) {
+@media (-moz-pref('zen.view.compact.hide-tabbar')) {
   html[nebula-multi-toolbar][nebula-compact-mode] #titlebar,
   html[nebula-collapsed-toolbar][nebula-compact-mode] #titlebar {
     top: var(--zen-element-separation) !important;
@@ -171,21 +147,19 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
     height: calc(100% - (var(--zen-element-separation) * 2)) !important;
   }
 
-  html[nebula-multi-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
-    #titlebar {
+  html[nebula-multi-toolbar]:root[zen-right-side='true'][nebula-compact-mode] #titlebar {
     left: auto !important;
     right: var(--zen-element-separation) !important;
   }
 
-  html[nebula-collapsed-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
-    #titlebar {
+  html[nebula-collapsed-toolbar]:root[zen-right-side='true'][nebula-compact-mode] #titlebar {
     left: auto !important;
     right: calc(var(--zen-element-separation) * 1.75) !important;
   }
 }
 
-@media (-moz-pref("zen.view.compact.hide-toolbar")) {
-  @media not all and (-moz-pref("zen.view.compact.hide-tabbar")) {
+@media (-moz-pref('zen.view.compact.hide-toolbar')) {
+  @media not all and (-moz-pref('zen.view.compact.hide-tabbar')) {
     html[nebula-multi-toolbar][nebula-compact-mode] #titlebar,
     html[nebula-collapsed-toolbar][nebula-compact-mode] #titlebar {
       background: none !important;
@@ -193,17 +167,15 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
       backdrop-filter: none !important;
     }
 
-    html[nebula-multi-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
-      #titlebar,
-    html[nebula-collapsed-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
-      #titlebar {
+    html[nebula-multi-toolbar]:root[zen-right-side='true'][nebula-compact-mode] #titlebar,
+    html[nebula-collapsed-toolbar]:root[zen-right-side='true'][nebula-compact-mode] #titlebar {
       left: auto !important;
       right: unset !important;
     }
   }
 }
 
-@media (-moz-pref("zen.view.compact.hide-tabbar")) and (-moz-pref("zen.view.compact.hide-toolbar")) {
+@media (-moz-pref('zen.view.compact.hide-tabbar')) and (-moz-pref('zen.view.compact.hide-toolbar')) {
   html[nebula-multi-toolbar][nebula-compact-mode] #titlebar,
   html[nebula-collapsed-toolbar][nebula-compact-mode] #titlebar {
     top: var(--zen-element-separation) !important;
@@ -211,14 +183,12 @@ html[nebula-single-toolbar][nebula-compact-mode] #titlebar {
     height: calc(100% - (var(--zen-element-separation) * 3)) !important;
   }
 
-  html[nebula-multi-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
-    #titlebar {
+  html[nebula-multi-toolbar]:root[zen-right-side='true'][nebula-compact-mode] #titlebar {
     left: auto !important;
     right: var(--zen-element-separation) !important;
   }
 
-  html[nebula-collapsed-toolbar]:root[zen-right-side="true"][nebula-compact-mode]
-    #titlebar {
+  html[nebula-collapsed-toolbar]:root[zen-right-side='true'][nebula-compact-mode] #titlebar {
     left: auto !important;
     right: calc(var(--zen-element-separation) * 1.75) !important;
   }
@@ -241,16 +211,16 @@ html[nebula-compact-mode] {
 
   /* Blur du contenu web quand la sidebar est hover.
     brightness + blur + scale, comme l'urlbar de Custom-v2.css. */
-  #browser:has(#navigator-toolbox[zen-has-hover="true"]) .browserStack {
+  #browser:has(#navigator-toolbox[zen-has-hover='true']) .browserStack {
     scale: 1.075 !important;
     filter: brightness(85%) blur(16px) saturate(140%) !important;
   }
 
   /* Glass panel sur le titlebar quand la sidebar est hover. */
-  #browser:has(#navigator-toolbox[zen-has-hover="true"]) #titlebar {
+  #browser:has(#navigator-toolbox[zen-has-hover='true']) #titlebar {
     background-color: rgba(0, 0, 0, 0.4) !important;
     backdrop-filter: blur(32px) saturate(1.4) !important;
-    box-shadow: rgba(0, 0, 0, 0.20) 0px 20px 40px 0px !important;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 40px 0px !important;
     border-radius: 6px !important;
     overflow: hidden !important;
   }
@@ -267,10 +237,7 @@ html[nebula-compact-mode] {
 
 /* Clean & Transparent Sidebar Box */
 #sidebar-box {
-  background-color: light-dark(
-    rgb(255 255 255 / 11%),
-    rgb(0 0 0 / 20%)
-  ) !important;
+  background-color: light-dark(rgb(255 255 255 / 11%), rgb(0 0 0 / 20%)) !important;
   border: none !important;
 }
 
@@ -328,11 +295,7 @@ html[nebula-compact-mode] {
   }
 
   /* Selected state */
-  &:is([pinned], :not([pinned])):is(
-      [selected="true"],
-      [visuallyselected="true"]
-    )
-    .tab-background {
+  &:is([pinned], :not([pinned])):is([selected='true'], [visuallyselected='true']) .tab-background {
     /* background-color: var(--nebula-color-selected) !important; */
     background-color: var(--nebula-color-min) !important;
     /* box-shadow: 0 0 3px var(--nebula-color-shadow) !important; */
@@ -361,15 +324,6 @@ html[nebula-compact-mode] {
    §8  CTRL+TAB PANEL (glass)
    ============================================= */
 
-#nebula-ctrltab-background-below {
-  background-color: light-dark(rgb(200 200 200 / 100%), rgb(20 20 20 / 100%));
-}
-
-#nebula-ctrltab-background-above {
-  backdrop-filter: var(--nebula-glass);
-}
-
-#ctrlTab-panel {
-  --panel-background: var(--nebula-color-glass) !important;
-  box-shadow: 0 4px 20px var(--nebula-color-shadow) !important;
-}
+/* ctrlTab : migré vers NavBtn (doctrine mods — plans/doctrine-mods.md).
+   Une feature = un propriétaire unique : NavBtn possède désormais
+   structure ET peau du switcher (overlays blur + coords fixées). */
