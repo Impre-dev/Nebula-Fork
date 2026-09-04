@@ -17,6 +17,12 @@
   --nebula-ui-tint: light-dark(rgb(255 255 255 / 20%), rgb(0 0 0 / 20%)) !important;
   --nebula-website-tint: light-dark(rgb(255 255 255 / 0%), rgb(0 0 0 / 0%)) !important;
 
+  /* 🌑 Browser veil — voile natif Zen (#zen-browser-background::before/::after)
+     qui assombrit toute la fenêtre sous les thèmes transparents.
+     Découvert le 04/09 après 4h de chasse — cf POST-MORTEM-voile-zen-browser-background.md
+     à la racine du workspace. On le garde, mais c'est nous qui contrôlons sa valeur. */
+  --nebula-browser-veil: light-dark(rgb(255 255 255 / 0%), rgb(0 0 0 / 40%)) !important;
+
   /* 🔮 Colors (semi-transparent) */
   --nebula-color-min: light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 20%)) !important;
   --nebula-color: light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 35%)) !important;
@@ -37,6 +43,13 @@
 /* Website background tint */
 browser[transparent='true'] {
   background: var(--nebula-website-tint) !important;
+}
+
+/* 🌑 Native Zen browser veil — override pour prendre le contrôle
+   (valeur d'origine : rgba(0,0,0,0.4) en dur dans le CSS natif) */
+#zen-browser-background::before,
+#zen-browser-background::after {
+  background: var(--nebula-browser-veil) !important;
 }
 
 /* Global overrides for transparency */
